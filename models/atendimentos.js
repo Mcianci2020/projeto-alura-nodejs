@@ -50,6 +50,7 @@ class Atendimentos {
         }    
     }        
 
+    
     lista(res) {
 
         const sql = 'SELECT * FROM Atendimentos'
