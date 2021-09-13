@@ -72,7 +72,7 @@ class Atendimentos {
             conexao.query(sql, (erro, resultados) => {
 
                 const atendimento = resultados[0]
-                
+
                 if(erro){
                     res.status(400).json(erro)
                 } else{
@@ -80,6 +80,25 @@ class Atendimentos {
                 }
             })
     }
+
+    altera(id, values, res) {
+        
+        if(values.data){
+                values.data = moment(values.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        }
+        
+        const sql = `UPDATE Atendimentos SET ? WHERE id=?`
+
+        conexao.query(sql, [values, id], (erro,resultados) => {
+            
+            if(erro){
+                res.status(400).json(erro)
+            } else{
+                res.status(200).json(resultados)
+            }  
+        })
+    }
+
 }
 
 module.exports = new Atendimentos
