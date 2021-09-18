@@ -4,6 +4,7 @@ class Tables {
         this.conexao = conexao
 
         this.criarAtendimentos()
+        this.criarPets()
     }
 
     criarAtendimentos(){
@@ -17,7 +18,21 @@ class Tables {
                 }
         } )
     }
-}
 
+    criarPets() {
+        const query = 'CREATE TABLE IF NOT EXISTS Pets (id int NOT NULL AUTO_INCREMENT, nome varchar(50), imagem varchar(200), PRIMARY KEY(id))'
+    
+        this.conexao.query(query, erro => {
+
+
+            if (erro) {
+                console.log(erro) 
+            } else {
+                console.log('Create table Pets success!!!')
+            }
+        })    
+
+    }
+}
 module.exports = new Tables
 
